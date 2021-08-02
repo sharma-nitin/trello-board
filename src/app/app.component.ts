@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ListService } from './services/list.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { ListService } from './services/list.service';
 export class AppComponent implements OnInit {
   title = 'Trelloboard';
   boarddata =[];
-
-  constructor(public listService: ListService){
+  modalShown =false;
+  @ViewChild('listmodal') listmodal;
+  constructor(public listService: ListService,
+    private modalService: NgbModal, private activeModal: NgbActiveModal){
 
   }
 
@@ -32,7 +35,20 @@ export class AppComponent implements OnInit {
   );
   }
 
-  addList() {
+  addList(): void {
+    const modalRef = this.modalService.open(this.listmodal);
+    this.modalShown=true
+  }
 
+  closeModal(): void {
+    this.modalShown = false;
+    this.modalService.dismissAll();
+  }
+
+  add(name) {
+   if(name) {
+     this.listService.addList(name);
+   }
+   this.closeModal();
   }
 }

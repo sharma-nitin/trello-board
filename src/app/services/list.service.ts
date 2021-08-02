@@ -45,4 +45,16 @@ export class ListService {
     this.trelloboards.next(data);
    }
 
+   addList(name) {
+    let data = JSON.parse(localStorage.getItem('boardsdata'));
+    const payload = {
+      id:Math.floor(Math.random()*10000),
+      name:name,
+      cards:[]
+    }
+    data.push(payload)
+    localStorage.setItem('boardsdata',JSON.stringify(data));
+    this.trelloboards.next(data);
+   }
+
 }

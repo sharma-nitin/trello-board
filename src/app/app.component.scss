@@ -17,14 +17,21 @@
 .board{
   display: flex;
   margin: 10px;
+  width: 95vw;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .add-list{
  text-align: right;
 }
 
-button {
-  padding: 8px;
+.add-button {
+   padding: 8px;
     margin: 5px auto;
     background-color: cadetblue;
     color: white;
@@ -32,3 +39,20 @@ button {
     border: none;
     outline: none;
 }
+
+.close {
+  &:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.transfer-btn{
+  background-color: orange;
+  color: white;
+}
+
+.modal-data{
+  padding-top: 5px;
+}
+
