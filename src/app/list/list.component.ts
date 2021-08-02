@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'trello-list',
@@ -8,13 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ListComponent implements OnInit {
 
   @Input() list;
-  constructor() { }
+  constructor(private listService: ListService) { }
 
   ngOnInit(): void {
   }
 
   deleteList() {
-    
+   this.listService.deleteList(this.list);
+  }
+
+  addItem() {
+
   }
 
 }

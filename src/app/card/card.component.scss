@@ -1,0 +1,22 @@
+.card {
+  margin: 5px;
+  border: 1px solid black;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.desc{
+  padding: 5px;
+  margin: 0;
+  font-size: 10px;
+}
+
+button {
+  background-color: Transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}

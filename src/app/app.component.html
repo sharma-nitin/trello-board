@@ -1,10 +1,9 @@
 <header class="toolbar" role="banner">
   <p>Trello Board</p>
 </header>
-
 <main>
   <section class="add-list">
-    <button>Add List</button>
+    <button (click)="addList()">Add List</button>
   </section>
   <section class="board">
     <trello-list *ngFor="let list of boarddata" [list]='list'></trello-list>

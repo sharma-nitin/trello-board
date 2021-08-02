@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'trello-card',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-
-  constructor() { }
+ @Input() item;
+ @Input() list;
+  constructor(private listService: ListService) { }
 
   ngOnInit(): void {
+  }
+
+  deleteItem() {
+   this.listService.deleteCardItem(this.item,this.list.id);
   }
 
 }

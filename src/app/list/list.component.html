@@ -3,4 +3,11 @@
     <div>{{list.name}}</div>
     <button (click)="deleteList()">X</button>
   </div>
+
+  <div class="card-container">
+     <trello-card *ngFor="let item of list.cards" [item]="item" [list]='list'></trello-card>
+  </div>
+  <div class="add-item">
+    <i class="fa fa-plus-circle" (click)="addItem()"></i>
+  </div>
 </div>
