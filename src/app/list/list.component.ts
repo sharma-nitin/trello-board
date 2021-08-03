@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ListService } from '../services/list.service';
@@ -11,9 +12,14 @@ import { TrelloModalComponent } from '../trello-modal/trello-modal.component';
 export class ListComponent implements OnInit {
 
   @Input() list;
+  @Input() boarddata;
+  connectedTo = [];
   constructor(private listService: ListService,  private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    for (let item of this.boarddata) {
+      this.connectedTo.push('list-'+item.id);
+    };
   }
 
   deleteList() {
@@ -32,6 +38,17 @@ export class ListComponent implements OnInit {
         this.listService.addItemToList(result,this.list.id)
       }
     });
+  }
+  
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
 }

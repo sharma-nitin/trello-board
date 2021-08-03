@@ -8,6 +8,7 @@ import { AddListComponent } from './add-list/add-list.component';
 import {  NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { TrelloModalComponent } from './trello-modal/trello-modal.component';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [
     NgbActiveModal,

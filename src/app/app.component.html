@@ -6,6 +6,6 @@
     <button class="add-button" (click)="addList()">Add List</button>
   </section>
   <section class="board">
-    <trello-list *ngFor="let list of boarddata" [list]='list'></trello-list>
+    <trello-list *ngFor="let list of boarddata" [list]='list' [boarddata]='boarddata'></trello-list>
   </section>
 </main>
