@@ -1,0 +1,20 @@
+.close {
+  &:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
+.transfer-btn{
+  background-color: cadetblue;
+  color: white;
+}
+
+.modal-data{
+  padding-top: 5px;
+}
+
+.disable{
+  opacity: 0.4;
+  pointer-events: none;
+}

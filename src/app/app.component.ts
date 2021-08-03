@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ListService } from './services/list.service';
+import { TrelloModalComponent } from './trello-modal/trello-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,6 @@ export class AppComponent implements OnInit {
   title = 'Trelloboard';
   boarddata =[];
   modalShown =false;
-  @ViewChild('listmodal') listmodal;
   constructor(public listService: ListService,
     private modalService: NgbModal, private activeModal: NgbActiveModal){
 
@@ -36,8 +36,17 @@ export class AppComponent implements OnInit {
   }
 
   addList(): void {
-    const modalRef = this.modalService.open(this.listmodal);
-    this.modalShown=true
+    const modalRef = this.modalService.open(TrelloModalComponent);
+    const data = {
+      title: 'Add List',
+      showDescription:false
+    };
+    modalRef.componentInstance.data = data;
+    modalRef.result.then((result) => {
+      if (result !== 'close') {
+        this.listService.addList(result.title)
+      }
+    });
   }
 
   closeModal(): void {

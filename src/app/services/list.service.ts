@@ -57,4 +57,20 @@ export class ListService {
     this.trelloboards.next(data);
    }
 
+   addItemToList(item,listid) {
+    let data = JSON.parse(localStorage.getItem('boardsdata'));
+    const payload = {
+      id:Math.floor(Math.random()*10000),
+      title:item.title,
+      desc: item.description,
+      createdAt: new Date()
+    }
+    const listItem = data.find((res)=>{
+      return res.id === listid;
+    })
+    listItem.cards.push(payload);
+    localStorage.setItem('boardsdata',JSON.stringify(data));
+    this.trelloboards.next(data);
+   }
+
 }

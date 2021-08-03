@@ -28,4 +28,11 @@ export const boards = [{
     }
   ]
 }
-]
+];
+
+export class listModal {
+  constructor(
+    public title: string,
+    public description: string
+  ) {}
+}

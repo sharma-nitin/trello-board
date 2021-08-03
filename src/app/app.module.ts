@@ -6,16 +6,20 @@ import { ListComponent } from './list/list.component';
 import { CardComponent } from './card/card.component';
 import { AddListComponent } from './add-list/add-list.component';
 import {  NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { TrelloModalComponent } from './trello-modal/trello-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     CardComponent,
-    AddListComponent
+    AddListComponent,
+    TrelloModalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     NgbActiveModal,

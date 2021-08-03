@@ -39,20 +39,3 @@
     border: none;
     outline: none;
 }
-
-.close {
-  &:focus {
-    box-shadow: none !important;
-    outline: none !important;
-  }
-}
-
-.transfer-btn{
-  background-color: orange;
-  color: white;
-}
-
-.modal-data{
-  padding-top: 5px;
-}
-
