@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
   this.fetchData();
   this.listService.trelloboards$.subscribe((res:any)=>{
     this.boarddata = res;
+    this.boarddata.forEach((list)=>{
+      list.cards.sort((a,b)=>a.createdAt - b.createdAt)
+    })
   })
   }
 
