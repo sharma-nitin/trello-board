@@ -63,12 +63,31 @@ export class ListService {
       id:Math.floor(Math.random()*10000),
       title:item.title,
       desc: item.description,
-      createdAt: new Date()
+      createdAt: new Date().getTime()
     }
     const listItem = data.find((res)=>{
       return res.id === listid;
     })
     listItem.cards.push(payload);
+    localStorage.setItem('boardsdata',JSON.stringify(data));
+    this.trelloboards.next(data);
+   }
+
+   handleDrop(prevlist,itemindex,newlist) {
+    const draglistid = Number(prevlist.split('-')[1]);
+    const droplistid = Number(newlist.split('-')[1]);
+    let data = JSON.parse(localStorage.getItem('boardsdata'));
+    let draglist = data.find((res)=>{
+      return res.id === draglistid;
+    })
+    const movedItem = draglist.cards[itemindex];
+    draglist.cards = draglist.cards.filter((res)=>{
+      return res.id !== movedItem.id;
+    })
+    let droplist = data.find((res)=>{
+      return res.id === droplistid;
+    })
+    droplist.cards.push(movedItem);
     localStorage.setItem('boardsdata',JSON.stringify(data));
     this.trelloboards.next(data);
    }

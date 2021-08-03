@@ -39,16 +39,15 @@ export class ListComponent implements OnInit {
       }
     });
   }
-  
+
   drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
+    if (event.previousContainer !== event.container) {
       transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+        this.listService.handleDrop(event.previousContainer.id,event.previousIndex,event.container.id)
+      }
   }
 
 }

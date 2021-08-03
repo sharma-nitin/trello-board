@@ -6,13 +6,13 @@ export const boards = [{
       id:1,
       title:'Product',
       desc: '3 pending task to be picked by raj',
-      createdAt:new Date()
+      createdAt:1628017432990
     },
     {
       id:2,
       title:'Sales',
       desc: 'send proposal to puneet for sales prices',
-      createdAt:new Date()
+      createdAt:1628017460895
     }
   ]
 },
@@ -21,10 +21,10 @@ export const boards = [{
   name:'Products',
   cards:[
     {
-      id:1,
+      id:3,
       title:'UAT testing',
       desc: 'Ask engineer to setup testing infra',
-      createdAt:new Date()
+      createdAt:1628017475621
     }
   ]
 }
