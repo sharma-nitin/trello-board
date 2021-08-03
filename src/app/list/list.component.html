@@ -1,11 +1,11 @@
-<div class="list" cdkDropList id="{{'list-'+list.id}}" [cdkDropListData]="list.cards"
-  [cdkDropListConnectedTo]="connectedTo" (cdkDropListDropped)="drop($event)">
+<div class="list">
   <div class="list-header">
     <div>{{list.name}}</div>
     <button (click)="deleteList()">X</button>
   </div>
 
-  <div class="card-container">
+  <div class="card-container" cdkDropList id="{{'list-'+list.id}}" [cdkDropListData]="list.cards"
+  [cdkDropListConnectedTo]="connectedTo" (cdkDropListDropped)="drop($event)">
      <trello-card *ngFor="let item of list.cards" [item]="item" [list]='list' cdkDrag></trello-card>
   </div>
   <div class="add-item">

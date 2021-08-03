@@ -29,8 +29,15 @@ export class ListService {
     data = data.filter((res)=>{
       return res.id!== list.id;
     })
+    this.sortData(data);
     localStorage.setItem('boardsdata',JSON.stringify(data));
     this.trelloboards.next(data);
+   }
+
+   sortData(data){
+    data.forEach((list)=>{
+      list.cards.sort((a,b)=>b.createdAt - a.createdAt)
+    })
    }
 
    deleteCardItem(item,listid) {
@@ -41,6 +48,7 @@ export class ListService {
     listItem.cards = listItem.cards.filter((res)=>{
       return res.id !== item.id;
     })
+    this.sortData(data);
     localStorage.setItem('boardsdata',JSON.stringify(data));
     this.trelloboards.next(data);
    }
@@ -69,14 +77,15 @@ export class ListService {
       return res.id === listid;
     })
     listItem.cards.push(payload);
+    this.sortData(data);
     localStorage.setItem('boardsdata',JSON.stringify(data));
     this.trelloboards.next(data);
    }
 
    handleDrop(prevlist,itemindex,newlist) {
+    let data = JSON.parse(localStorage.getItem('boardsdata'));
     const draglistid = Number(prevlist.split('-')[1]);
     const droplistid = Number(newlist.split('-')[1]);
-    let data = JSON.parse(localStorage.getItem('boardsdata'));
     let draglist = data.find((res)=>{
       return res.id === draglistid;
     })
@@ -88,6 +97,7 @@ export class ListService {
       return res.id === droplistid;
     })
     droplist.cards.push(movedItem);
+    this.sortData(data);
     localStorage.setItem('boardsdata',JSON.stringify(data));
     this.trelloboards.next(data);
    }
